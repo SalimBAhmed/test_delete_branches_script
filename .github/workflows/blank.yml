@@ -18,7 +18,14 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 11
-
+      - name: test if pr
+        if: github.event_name == 'pull_request'
+        run: echo "pr"
+      
+      - name: test if not pr
+        if: github.event_name != 'pull_request'
+        run: echo "not pr"
+        
       # Runs a single command using the runners shell
       - name: Run a one-line script
         run: echo "args=a b c" >> $GITHUB_ENV
